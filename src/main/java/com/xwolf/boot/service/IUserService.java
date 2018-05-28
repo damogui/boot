@@ -15,4 +15,5 @@ public interface IUserService {
     String insert(User user);
 
     List<User> getList();
+    List<User> getClass(int id);
 }

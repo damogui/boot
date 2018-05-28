@@ -15,4 +15,5 @@ public interface IUserDao {
     int insert(User user);
 
     List<User> queryList();
+    List<User> getClass(int id);
 }

@@ -50,4 +50,16 @@ public class UserController {
        List<User> list= userService.getList();
        return list;
     }
+
+    /**
+     * @Author: 郭佳
+     * @param id
+     * @Description:TODO 根据id进行获取
+     * @Date:  2018-05-28 19:52
+     */
+    @GetMapping(value ="getById/{id}")
+    public List<User> getUserList(@PathVariable("id")int id){
+        List<User> list= userService.getClass(id);
+        return list;
+    }
 }

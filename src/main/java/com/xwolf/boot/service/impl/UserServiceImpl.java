@@ -51,4 +51,9 @@ public class UserServiceImpl implements IUserService {
     public List<User> getList() {
         return userDao.queryList();
     }
+
+    @Override
+    public List<User> getClass(int id) {
+        return userDao.getClass(id);
+    }
 }

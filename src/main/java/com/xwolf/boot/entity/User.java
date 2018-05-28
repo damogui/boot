@@ -32,11 +32,18 @@ public class User {
     @Length(min = 5,max =32,message = "用户名长度在5-32")
     private String uname;
 
+
+
+
     /**
      * 生日
      */
     @JsonFormat(pattern = Constants.DATE_DEFAULT_FORMAT)
     private Date birth;
+
+    private   Com com;
+
+
 
     public int getUid() {
         return uid;

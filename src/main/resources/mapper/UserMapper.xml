@@ -7,6 +7,7 @@
          <id column="uid" jdbcType="INTEGER" property="uid"/>
          <result column="uname" property="uname" jdbcType="VARCHAR"/>
          <result column="birth" property="birth" jdbcType="TIMESTAMP"/>
+         <result column="cid" property="cid" jdbcType="INTEGER"/>
      </resultMap>
 
     <sql id="Base_Column">
@@ -20,4 +21,23 @@
     <select id="queryList" resultMap="baseResultMap" >
      SELECT <include refid="Base_Column"/>  FROM  user
     </select>
+
+
+    <!--方式一：嵌套结果：使用嵌套结果映射来处理重复的联合结果的子集-->
+    <!--封装联表查询的数据(去除重复的数据)-->
+    <!--select * from class c, teacher t where c.teacher_id=t.t_id and c.c_id=1-->
+   <!---->
+    <select id="getClass" parameterType="int" resultMap="ClassResultMap">
+        select * from com c, `user`  u where c.id=u.cid and u.cid=#{id}
+    </select>
+    <!-- 使用resultMap映射实体类和字段之间的一一对应关系 -->
+    <resultMap type="com.xwolf.boot.entity.User" id="ClassResultMap">
+        <id property="id" column="c_id"/>
+        <result property="name" column="c_name"/>
+        <association property="com" javaType="com.xwolf.boot.entity.Com">
+            <id property="id" column="id"/>
+            <result property="comName" column="comName"/>
+        </association>
+    </resultMap>
+
 </mapper>
